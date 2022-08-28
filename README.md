@@ -8,7 +8,7 @@ To develop a neural network regression model for the given dataset.
 
 ## THEORY
 
-Explain the problem statement
+First we can take the dataset based on one input value and some mathematical calculaus output value.next define the neaural network model in three layers.first layer have four neaurons and second layer have three neaurons,third layer have two neaurons.the neural network model take inuput and produce actual output using regression.
 
 ## Neural Network Model
 
@@ -99,20 +99,26 @@ ai_brain.predict(x_n1_1)
 
 ## Dataset Information
 
-Include screenshot of the dataset
+![image](https://user-images.githubusercontent.com/75235427/187089334-c807fede-894d-4a97-8e0b-a33d7978f3d5.png)
+
 
 ## OUTPUT
 
 ### Training Loss Vs Iteration Plot
 
-Include your plot here
+![image](https://user-images.githubusercontent.com/75235427/187089435-2bb4027b-944c-4038-93ef-788095783913.png)
+
+
 
 ### Test Data Root Mean Squared Error
 
-Find the test data root mean squared error
+![image](https://user-images.githubusercontent.com/75235427/187089372-4a8eb5b2-2bca-42ce-bcbc-133a7776f2ce.png)
+
 
 ### New Sample Data Prediction
 
-Include your sample input and output here
+![image](https://user-images.githubusercontent.com/75235427/187089392-fbd87f9e-f4fe-4d25-b455-746c4ba12bf7.png)
+
 
 ## RESULT
+Thus the Neural network for Regression model is Implemented successfully.
