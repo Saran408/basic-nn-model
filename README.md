@@ -1,4 +1,6 @@
-# Developing a Neural Network Regression Model
+### EX NO:01
+### DATE:
+# <p align="center"> Developing a Neural Network Regression 
 
 ## AIM
 
@@ -10,7 +12,8 @@ Explain the problem statement
 
 ## Neural Network Model
 
-Include the neural network model diagram.
+![image](https://user-images.githubusercontent.com/75235427/187089091-2cce1477-ecd8-4d51-bfc6-540f7069ca06.png)
+
 
 ## DESIGN STEPS
 
@@ -44,7 +47,55 @@ Evaluate the model with the testing data.
 
 ## PROGRAM
 
-Include your code here
+```python
+
+#Importing Required Packages
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+
+#Dataframe
+df=pd.read_csv(r"C:\Users\Dell\OneDrive\Documents\Book1.csv")
+x=df[['X']].values
+y=df[['Y']].values
+
+#Splitting Training and Testing data
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.33,random_state=42)
+
+#Preprocessing
+scaler=MinMaxScaler()
+scaler.fit(x_train)
+scaler.fit(x_test)
+x_train1=scaler.transform(x_train)
+x_test1=scaler.transform(x_test)
+
+#Model
+ai_brain= Sequential([
+    Dense(3,activation='relu'),
+    Dense(2,activation='relu'),
+    Dense(1)
+])
+ai_brain.compile(
+     optimizer = 'rmsprop',
+     loss='mse'
+)
+
+#Fitting Model
+ai_brain.fit(x_train1,y_train,epochs=5000)
+
+#Loss
+loss_df=pd.DataFrame(ai_brain.history.history)
+
+loss_df.plot()
+ai_brain.evaluate(x_test1,y_test)
+
+#New Data
+x_n1=[[11]]
+x_n1_1=scaler.transform(x_n1)
+ai_brain.predict(x_n1_1)
+```
 
 ## Dataset Information
 
