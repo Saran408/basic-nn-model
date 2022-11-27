@@ -1,23 +1,19 @@
-### EX NO:01
-### DATE:
-# <p align="center"> Developing a Neural Network Regression 
+### EX NO: 01
+
+### DATE: 29/08/2022
+
+
+# <p align = "center"> Developing a Neural Network Regression Model </p>
+ 
 
 ## AIM
-
 To develop a neural network regression model for the given dataset.
 
 ## THEORY
+The Neural network model contains input layer,two hidden layers and output layer.Input layer contains a single neuron.Output layer also contains single neuron.First hidden layer contains six neurons and second hidden layer contains five neurons.A neuron in input layer is connected with every neurons in a first hidden layer.Similarly,each neurons in first hidden layer is connected with all neurons in second hidden layer.All neurons in second hidden layer is connected with output layered neuron.Relu activation function is used here .It is linear neural network model(single input neuron forms single output neuron).Explain the problem statement
 
-Neural networks consist of simple input/output units called neurons (inspired by neurons of the human brain). These input/output units are interconnected and each connection has a weight associated with it. Neural networks are flexible and can be used for both classification and regression. In this article, we will see how neural networks can be applied to regression problems.
-
-Regression helps in establishing a relationship between a dependent variable and one or more independent variables. Regression models work well only when the regression equation is a good fit for the data. Most regression models will not fit the data perfectly. Although neural networks are complex and computationally expensive, they are flexible and can dynamically pick the best type of regression, and if that is not enough, hidden layers can be added to improve prediction.
-
-First import the libraries which we will going to use and Import the dataset and check the types of the columns and Now build your training and test set from the dataset Here we are making the neural network 3 hidden layer with activation layer as relu and with their nodes in them. Now we will fit our dataset and then predict the value.
-
-## Neural Network Model
-
-![image](https://user-images.githubusercontent.com/75235427/187089091-2cce1477-ecd8-4d51-bfc6-540f7069ca06.png)
-
+##  </br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>Neural Network Model
+![Screenshot 2022-11-26 225802](https://user-images.githubusercontent.com/75235789/204101538-a9914978-db22-414d-b3bc-4619415e403f.jpg)
 
 ## DESIGN STEPS
 
@@ -49,80 +45,73 @@ Plot the performance plot
 
 Evaluate the model with the testing data.
 
-## PROGRAM
-
+## </br>PROGRAM
 ```python
+# Developed By : SARAN M
+# Register Number : 212220230044
 
-#Importing Required Packages
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 
-#Dataframe
-df=pd.read_csv(r"C:\Users\Dell\OneDrive\Documents\Book1.csv")
-x=df[['X']].values
-y=df[['Y']].values
+df=pd.read_csv("data.csv")
+df.head()
 
-#Splitting Training and Testing data
-x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.33,random_state=42)
+x=df[['input']].values
+x
 
-#Preprocessing
+y=df[['output']].values
+y
+
+xtrain,xtest,ytrain,ytest=train_test_split(x,y,test_size=0.3,random_state=40)
 scaler=MinMaxScaler()
-scaler.fit(x_train)
-scaler.fit(x_test)
-x_train1=scaler.transform(x_train)
-x_test1=scaler.transform(x_test)
+scaler.fit(xtrain)
+scaler.fit(xtest)
+xtrain1=scaler.transform(xtrain)
+xtest1=scaler.transform(xtest)
 
-#Model
-ai_brain= Sequential([
-    Dense(3,activation='relu'),
-    Dense(2,activation='relu'),
-    Dense(1)
+model=Sequential([
+    Dense(6,activation='relu'),
+    Dense(5,activation='relu'),
+   
+    Dense(1),
 ])
-ai_brain.compile(
-     optimizer = 'rmsprop',
-     loss='mse'
-)
 
-#Fitting Model
-ai_brain.fit(x_train1,y_train,epochs=5000)
 
-#Loss
-loss_df=pd.DataFrame(ai_brain.history.history)
+model.compile(optimizer='rmsprop',loss='mse')
 
-loss_df.plot()
-ai_brain.evaluate(x_test1,y_test)
+model.fit(xtrain1,ytrain,epochs=5000)
 
-#New Data
-x_n1=[[11]]
-x_n1_1=scaler.transform(x_n1)
-ai_brain.predict(x_n1_1)
+lossmodel=pd.DataFrame(model.history.history)
+lossmodel.plot()
+
+model.evaluate(xtest1,ytest)
+
+xn1=[[30]]
+xn11=scaler.transform(xn1)
+model.predict(xn11)
 ```
 
 ## Dataset Information
+![Screenshot 2022-11-26 230353](https://user-images.githubusercontent.com/75235789/204101772-240b8325-4cb9-42ed-bdca-13e6c28c36dc.jpg)
 
-![image](https://user-images.githubusercontent.com/75235427/187089334-c807fede-894d-4a97-8e0b-a33d7978f3d5.png)
 
 
-## OUTPUT
+## </br>OUTPUT
 
 ### Training Loss Vs Iteration Plot
 
-![image](https://user-images.githubusercontent.com/75235427/187089435-2bb4027b-944c-4038-93ef-788095783913.png)
+![Screenshot 2022-08-29 003447](https://user-images.githubusercontent.com/75235789/187090587-075e54c8-2ba4-4460-8e8a-555762e75fda.jpg)
+
+### Test Data root Mean Squared Error
+![Screenshot 2022-11-26 231534](https://user-images.githubusercontent.com/75235789/204102224-138e0acf-f161-4922-b845-30e6c104db37.jpg)
 
 
-
-### Test Data Root Mean Squared Error
-
-![image](https://user-images.githubusercontent.com/75235427/187089372-4a8eb5b2-2bca-42ce-bcbc-133a7776f2ce.png)
-
-
-### New Sample Data Prediction
-
-![image](https://user-images.githubusercontent.com/75235427/187089392-fbd87f9e-f4fe-4d25-b455-746c4ba12bf7.png)
-
+### New Sample Data Protection
+![Screenshot 2022-08-29 003540](https://user-images.githubusercontent.com/75235789/187090615-08b2987e-0ca0-4b3d-86cd-500c956c2d33.jpg)
 
 ## RESULT
-Thus the Neural network for Regression model is Implemented successfully.
+
+Thus, the neural network model regression model for the given dataset is developed.
